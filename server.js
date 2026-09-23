@@ -1,11 +1,15 @@
 import express from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
+import path from "path";
+import { fileURLToPath } from "url";
 
 // Importar rutas
 import categoriasRouter from "./routes/categorias.js";
 import menusRouter from "./routes/menus.js";
 import pedidosRouter from "./routes/pedidos.js";
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 // Cargar variables de entorno
 dotenv.config({ override: true });
@@ -28,6 +32,10 @@ app.use((req, res, next) => {
 app.use("/api/categorias", categoriasRouter);
 app.use("/api/menus", menusRouter);
 app.use("/api/pedidos", pedidosRouter);
+
+// ─── Frontend (archivos estáticos) ────────────────────────────
+const FRONTEND_PATH = path.join(__dirname, "frontend");
+app.use(express.static(FRONTEND_PATH));
 
 // Ruta raíz de bienvenida
 app.get("/", (req, res) => {
@@ -65,6 +73,7 @@ const startServer = async () => {
       console.log(`   PUT/DELETE     http://localhost:${PORT}/api/menus/:id`);
       console.log(`   GET/POST       http://localhost:${PORT}/api/pedidos`);
       console.log(`   PUT/DELETE     http://localhost:${PORT}/api/pedidos/:id`);
+      console.log(`   🖥️  Frontend:     http://localhost:${PORT}/`);
     });
   } catch (error) {
     console.error("❌ Error al conectar con MongoDB:", error.message);

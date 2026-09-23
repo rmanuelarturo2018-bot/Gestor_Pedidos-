@@ -1,0 +1,347 @@
+/* ============================================
+   Gestor de Pedidos - Restaurante (Frontend)
+   ============================================ */
+
+:root {
+  --primario: #e67e22;
+  --primario-oscuro: #cf6d15;
+  --peligro: #e74c3c;
+  --exito: #27ae60;
+  --info: #2980b9;
+  --gris-claro: #f5f6fa;
+  --gris: #dcdde1;
+  --gris-oscuro: #636e72;
+  --texto: #2d3436;
+  --blanco: #ffffff;
+  --radio: 10px;
+  --sombra: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+  background: var(--gris-claro);
+  color: var(--texto);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ---------- Header ---------- */
+.header {
+  background: linear-gradient(135deg, var(--primario), var(--primario-oscuro));
+  color: var(--blanco);
+  padding: 1.5rem 2rem;
+  text-align: center;
+}
+
+.header h1 {
+  font-size: 1.6rem;
+}
+
+.subtitle {
+  opacity: 0.85;
+  font-size: 0.9rem;
+  margin-top: 0.3rem;
+}
+
+/* ---------- Tabs ---------- */
+.tabs {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 1rem;
+  background: var(--blanco);
+  box-shadow: var(--sombra);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.tab {
+  border: none;
+  background: var(--gris-claro);
+  padding: 0.6rem 1.4rem;
+  border-radius: 999px;
+  cursor: pointer;
+  font-size: 0.95rem;
+  transition: all 0.2s ease;
+}
+
+.tab:hover {
+  background: var(--gris);
+}
+
+.tab.active {
+  background: var(--primario);
+  color: var(--blanco);
+  font-weight: 600;
+}
+
+/* ---------- Contenido ---------- */
+main {
+  flex: 1;
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 1.5rem;
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.section-header h2 {
+  font-size: 1.3rem;
+}
+
+/* ---------- Formularios ---------- */
+.card {
+  background: var(--blanco);
+  border-radius: var(--radio);
+  box-shadow: var(--sombra);
+  padding: 1.25rem;
+  margin-bottom: 1.5rem;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 0.8rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.form-group.full {
+  grid-column: 1 / -1;
+}
+
+label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--gris-oscuro);
+}
+
+input,
+select,
+textarea {
+  padding: 0.55rem 0.75rem;
+  border: 1px solid var(--gris);
+  border-radius: 6px;
+  font-size: 0.95rem;
+  font-family: inherit;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  outline: 2px solid var(--primario);
+  border-color: transparent;
+}
+
+/* ---------- Botones ---------- */
+.btn {
+  border: none;
+  padding: 0.55rem 1.1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.btn-primario {
+  background: var(--primario);
+  color: var(--blanco);
+}
+
+.btn-primario:hover:not(:disabled) {
+  background: var(--primario-oscuro);
+}
+
+.btn-editar {
+  background: var(--info);
+  color: var(--blanco);
+}
+
+.btn-eliminar {
+  background: var(--peligro);
+  color: var(--blanco);
+}
+
+.btn-accion {
+  background: var(--exito);
+  color: var(--blanco);
+}
+
+.btn-sm {
+  padding: 0.35rem 0.7rem;
+  font-size: 0.8rem;
+}
+
+/* ---------- Tabla ---------- */
+.table-wrap {
+  background: var(--blanco);
+  border-radius: var(--radio);
+  box-shadow: var(--sombra);
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.92rem;
+}
+
+thead {
+  background: var(--texto);
+  color: var(--blanco);
+}
+
+th,
+td {
+  padding: 0.75rem 1rem;
+  text-align: left;
+  border-bottom: 1px solid var(--gris-claro);
+}
+
+tbody tr:hover {
+  background: #fdf3e7;
+}
+
+/* ---------- Badges de estado ---------- */
+.badge {
+  display: inline-block;
+  padding: 0.25rem 0.7rem;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+
+.badge-pendiente {
+  background: #fef5e7;
+  color: #b9770e;
+}
+
+.badge-en-preparación {
+  background: #ebf5fb;
+  color: #2471a3;
+}
+
+.badge-listo {
+  background: #e8f8f5;
+  color: #148f77;
+}
+
+.badge-entregado {
+  background: #eafaf1;
+  color: #1e8449;
+}
+
+.badge-cancelado {
+  background: #fdedec;
+  color: #c0392b;
+}
+
+.badge-disponible {
+  background: #eafaf1;
+  color: #1e8449;
+}
+
+.badge-no-disponible {
+  background: #fdedec;
+  color: #c0392b;
+}
+
+/* ---------- Notificaciones ---------- */
+.notificacion {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  padding: 0.9rem 1.3rem;
+  border-radius: 8px;
+  color: var(--blanco);
+  font-weight: 500;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  animation: aparecer 0.3s ease;
+  z-index: 100;
+  max-width: 340px;
+}
+
+.notificacion.exito {
+  background: var(--exito);
+}
+
+.notificacion.error {
+  background: var(--peligro);
+}
+
+@keyframes aparecer {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* ---------- Estado vacío / carga ---------- */
+.vacio {
+  text-align: center;
+  padding: 2.5rem 1rem;
+  color: var(--gris-oscuro);
+}
+
+.cargando {
+  text-align: center;
+  padding: 2rem;
+  color: var(--gris-oscuro);
+}
+
+/* ---------- Footer ---------- */
+.footer {
+  text-align: center;
+  padding: 1rem;
+  font-size: 0.8rem;
+  color: var(--gris-oscuro);
+}
+
+.footer code {
+  background: var(--gris);
+  padding: 0.1rem 0.4rem;
+  border-radius: 4px;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 600px) {
+  .tabs {
+    flex-wrap: wrap;
+  }
+
+  th,
+  td {
+    padding: 0.5rem;
+    font-size: 0.85rem;
+  }
+}
